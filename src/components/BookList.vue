@@ -1,14 +1,25 @@
 <template>
     <div>
-        <button @click="$router.push('/')">Главная страница</button>
-        <button @click="$router.push('/posts')">Посты</button>
-        <button @click="$router.push('/postsStore')">Посты со стором</button>
+        <ul>
+            <li v-for="book in books" :key="book.id">
+                <router-link :to="'/book/' + book.id">{{ book.title }}</router-link>
+            </li>
+        </ul>
     </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default{
-    name: "navbar"
+    name: 'BookList',
+
+    computed: {
+        ...mapState(['books'])
+    },
+    created(){
+        this.$store.dispatch('fetchBooks')
+    }
 }
 </script>
 

@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router"
-import Main from '@/pages/Main'
 import HomePage from '@/pages/HomePage'
 import AddBookPage from '@/pages/AddBookPage'
 import BookDetailPage from '@/pages/BookDetailPage'

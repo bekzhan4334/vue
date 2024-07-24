@@ -1,34 +1,32 @@
 <template>
-    <div>
+    <form @submit.prevent="handleSubmit">
         <div>
-            <strong>Заголовок: </strong> {{ post.title }}
+            <label for="title">Title</label>
+            <input type="text" v-model="title" id="title">
         </div>
         <div>
-            <strong>Описание: </strong> {{ post.body }}
+            <label for="author">Author</label>
+            <input type="text" v-model="author" id="author">
         </div>
-        <button @click="$emit('remove', post)">Удалить</button>
-        <button @click="editPost">Изменить</button>
-        <button @click="$router.push(`/posts/${post.id}`)">Открыть</button>
-    </div>  
+        <button type="submit">Submit</button>
+    </form> 
 </template>
 
 <script>
 export default{
-    name: "post-item",
-    props:{
-        post:{
-            type: Object,
-            required: true
+    name: "BookForm",
+    data(){
+        return {
+            title: '',
+            author: ''
         }
     },
-    methods:{
-        editPost(){
-            const newTitle = prompt('Введите новый заголовок:', this.post.title);
-            const newBody = prompt('Введите новое описание:', this.post.body);
-            if(newTitle !== null && newBody !== null){
-                this.post.title = newTitle;
-                this.post.body = newBody;
-            }
+    methods: {
+        handleSubmit(){
+            this.$emit('submit', {
+                title: this.title,
+                author: this.author
+            })
         }
     }
 }

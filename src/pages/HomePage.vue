@@ -1,18 +1,20 @@
-    <template>
-        <div>
-            <h1>Это страница поста с ID: {{ $route.params.id }}</h1>
-            <post-item
-                :post="$store.state.posts[$route.params.id]"
-            />
-        </div>
-    </template>
+<template>
+    <div>
+        <h1>Home Page</h1>
+        <book-list></book-list>
+    </div>
+</template>
 
-    <script>
-    export default{
+<script>
+   import BookList from '../components/BookList.vue';
 
-    }
-    </script>
+   export default {
+    components: {
+    BookList
+ }
+};
+</script>
 
-    <!-- Add "scoped" attribute to limit CSS to this component only -->
-    <style scoped>
-    </style>
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+</style>

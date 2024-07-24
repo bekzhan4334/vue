@@ -1,71 +1,26 @@
 <template>
-    <button @click="fetchPosts">Загрузить посты</button>
-    <post-form 
-      @create="createPost"
+   <div>
+    <h1>Add Book Page</h1>
+    <book-form @submit="addBook"
     />
-  
-    <post-list 
-    :posts="posts"
-    @remove="deletePost"
-    @edit="editPost"
-    />
-  </template>
-  
-  <script>
-  import axios from "axios"
-  export default {
-    data(){
-      return{
-        posts:[],
-        id: 0
-      }
+   </div>
+</template>
+
+<script>
+import BookForm from '../components/BookForm.vue'
+export default{
+  components: {
+        BookForm
     },
-    mounted(){
-        this.fetchPosts()
-    },
-    methods:{
-      async fetchPosts(){
-        const responce = await axios.get("https://jsonplaceholder.typicode.com/posts?_limit=5")
-        this.posts = responce.data
-        this.id = this.posts.length
-      },
-      deletePost(post){
-        this.posts = this.posts.filter(function(p){
-          return p.id !== post.id
-        })
-      },
-      createPost(post){
-        this.id++
-        post.id = this.id
-        this.posts.push(post)
-      },
-      editPost(post){
-        
-      }
+  methods:{
+    addBook(book){
+      book.id = Date.now()
+      this.$store.commit('addBook', book)
+      this.$router.push('/')
     }
   }
-  </script>
-  
-  <style>
-  #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: left;
-    color: #2c3e50;
-  }
-  
-  nav {
-    padding: 30px;
-  }
-  
-  nav a {
-    font-weight: bold;
-    color: #2c3e50;
-  }
-  
-  nav a.router-link-exact-active {
-    color: #42b983;
-  }
-  </style>
-  
+}
+</script>
+
+<style>
+</style>
