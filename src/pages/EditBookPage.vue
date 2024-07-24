@@ -1,12 +1,12 @@
 <template>
     <button @click="fetchPosts">Загрузить посты</button>
     <post-form 
-      @create="createPost"
+      @create="createPosts"
     />
   
     <post-list 
     :posts="posts"
-    @remove="deletePost"
+    @remove="deletePosts"
     @edit="editPost"
     />
 </template>
@@ -21,12 +21,26 @@ import { mapState, mapGetters, mapMutations, mapActions} from 'vuex'
       ...mapActions({
         fetchPosts: 'fetchPosts'
       }),
+      ...mapMutations({
+        createPost: 'createPost',
+        deletePost: 'deletePost'
+      }),
+      createPosts(post){
+        this.createPost(post)
+      },
+      deletePosts(post){
+        this.deletePost(post)
+      }
+
     },
     computed:{
         ...mapState({
             posts: state => state.posts
         })
-      }
+    },
+    handler(){
+        this.createPost()
+    }
     
   }
   </script>

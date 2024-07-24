@@ -1,31 +1,30 @@
 import { createStore } from "vuex"
 import axios from "axios"
+import BookDetailPage from "@/pages/BookDetailPage.vue"
 
 export default createStore({
     state:{
-        posts: [],
-        likes: 0
+        books: []
     },
     getters:{
-        doubleLikes(state){
-            return state.likes * 2
+        allBooks(state){
+            return state.books
+        },
+        bookById(state){
+           return function(id){
+                return state.books.find(book => book.id === id)
+           }
         }
     },
     mutations:{
-        incLikes(state){
-            state.likes += 1
+        setBooks(state, books){
+            state.books = books
         },
-        decLikes(state){
-            state.likes -= 1
+        addBook(state, book){
+            state.books.push(book)
         },
-        setPosts(state, newPosts){
-            state.posts = newPosts
-        }
+        
     },
     actions:{
-        async fetchPosts({commit}){
-            const responce = await axios.get("https://jsonplaceholder.typicode.com/posts?_limit=5")
-            commit("setPosts", responce.data)
-          }
     }
 })

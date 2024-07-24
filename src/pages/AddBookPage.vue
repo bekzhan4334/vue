@@ -1,10 +1,4 @@
 <template>
-    <div>Количество лайков {{ $store.state.likes }}</div>
-    <div>Двойные лайки {{ $store.getters.doubleLikes }}</div>
-    <div>
-        <button @click="$store.commit('incLikes')">Лайк</button>
-        <button @click="$store.commit('decLikes')">Дизлайк</button>
-    </div>
     <button @click="fetchPosts">Загрузить посты</button>
     <post-form 
       @create="createPost"

@@ -1,25 +1,26 @@
 import { createRouter, createWebHistory } from "vue-router"
 import Main from '@/pages/Main'
-import PostPage from '@/pages/PostPage'
-import PostIdPage from '@/pages/PostIdPage'
-import PostPageWithStore from '@/pages/PostPageWithStore'
+import HomePage from '@/pages/HomePage'
+import AddBookPage from '@/pages/AddBookPage'
+import BookDetailPage from '@/pages/BookDetailPage'
+import EditBookPage from '@/pages/EditBookPage'
 
 const routes = [
     {
         path: '/',
-        component: Main
+        component: HomePage
     },
     {
-        path: '/posts',
-        component: PostPage
+        path: '/add',
+        component: AddBookPage
     },
     {
-        path: '/postsStore',
-        component: PostPageWithStore
+        path: '/edit/:id',
+        component: EditBookPage
     },
     {
-        path: '/posts/:id',
-        component: PostIdPage
+        path: '/book/:id',
+        component: BookDetailPage
     }
 ]
 

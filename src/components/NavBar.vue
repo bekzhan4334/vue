@@ -1,14 +1,24 @@
 <template>
+    <h3>Список постов</h3>
     <div>
-        <button @click="$router.push('/')">Главная страница</button>
-        <button @click="$router.push('/posts')">Посты</button>
-        <button @click="$router.push('/postsStore')">Посты со стором</button>
+        <post-item
+            v-for="post in posts"
+            :post="post"
+            @remove="$emit('remove', post)"
+        />
     </div>
+    
 </template>
 
 <script>
 export default{
-    name: "navbar"
+    name: "post-list",
+    props: {
+        posts:{
+            type: Array,
+            required: true
+        }
+    }
 }
 </script>
 
